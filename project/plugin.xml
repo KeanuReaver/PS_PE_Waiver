@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+        version="25.04.03"
+        xmlns="http://plugin.powerschool.pearson.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        description="Creates more customizable interface for PE Waivers and alerts."
+        name="UCSD - PE Waiver"
+        xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
+    <publisher name="Alec McLeran">
+        <contact email="mclerana@urbandaleschools.com"/>
+    </publisher>
+</plugin>

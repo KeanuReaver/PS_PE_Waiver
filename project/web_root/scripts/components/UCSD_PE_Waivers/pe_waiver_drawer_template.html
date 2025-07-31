@@ -1,0 +1,85 @@
+<div id="pe-overlay"></div>
+<div    id="pe-drawer" 
+        class="drawer">
+    <div id="pe-drawer-header">
+        <div class="button-row pe-drawer-button-panel">
+            <h2 style="text-align: left; padding: 0">New PE Waiver
+                <button type="button" 
+                        data-ng-click="closeDrawerNoSave()">
+                    X
+                </button>
+            </h2>
+        </div>
+        <p></p>
+    </div>
+    <div id="pe-drawer-content">
+        <form name="waiverDrawerForm">
+            <div class="fluid-form">
+                <div>
+                    <div>
+                        <label>
+                            Start Date
+                            <input  type="text" 
+                                    class="psDateWidget" 
+                                    data-ng-model="record.peStart"
+                                    required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            End Date
+                            <input  type="text"
+                                    class="psDateWidget"
+                                    data-ng-model="record.peEnd"
+                                    required>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>
+                            <select data-ng-model="record.reason"
+                                    required>
+                                <option value=""></option>
+                                <option value="Medical Exemption">Medical Exemption</option>   
+                                <option value="Religious Exemption">Religious Exemption</option>   
+                                <option value="Off-Campus Educational Program">Off-Campus Educational Program</option>   
+                                <option value="Academic Course Not Otherwise Available">Academic Course Not Otherwise Available</option>   
+                                <option value="School Sponsored Activity">School Sponsored Activity</option>   
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>
+                            Comments
+                            <textarea data-ng-model="record.comments"></textarea>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>
+                            Author
+                            <input  type="text"
+                                    data-ng-model="record.author"
+                                    readonly>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="button-row">
+                <button type="button"
+                        data-ng-click="closeDrawerNoSave()">
+                    Close
+                </button>
+                <button type="button"
+                        data-ng-disabled="waiverDrawerForm.$invalid"
+                        data-ng-click="saveChanges()">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>    
+</div>

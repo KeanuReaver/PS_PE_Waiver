@@ -1,0 +1,10 @@
+<permission_mappings>
+    <permission name="/admin/home.html">
+        <implies allow="post">/ws/schema/table/u_ucsd_pe_waiver</implies>
+        <implies allow="put">/ws/schema/table/u_ucsd_pe_waiver/#</implies>
+        <implies allow="delete">/ws/schema/table/u_ucsd_pe_waiver/#</implies>
+        <implies allow="get">/ws/schema/table/u_ucsd_pe_waiver/#</implies>
+        <implies allow="get">/ws/schema/table/u_ucsd_pe_waiver/count</implies>
+        <implies allow="get">/ws/schema/table/u_ucsd_pe_waiver</implies>
+    </permission>
+</permission_mappings>

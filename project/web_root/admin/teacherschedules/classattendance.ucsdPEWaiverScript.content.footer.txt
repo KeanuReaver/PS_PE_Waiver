@@ -1,0 +1,10 @@
+<script type="text/javascript">
+    $j(document).ready(function(){
+        $j('.pe-waiver-info').each(function(){
+            let ccidentifier = $j(this).attr('ccident');
+
+            $j('tr[id=' + ccidentifier + '] td:nth-child(2)').append($j(this).html());
+            $j('this').remove();
+        });
+    });
+</script>

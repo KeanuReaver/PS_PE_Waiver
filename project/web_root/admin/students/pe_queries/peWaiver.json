@@ -1,0 +1,20 @@
+[~[tlist_sql;
+    SELECT
+        u_ucsd_pe_waiver.id             AS waiverid,
+        u_ucsd_pe_waiver.start_date     AS peStart,
+        u_ucsd_pe_waiver.end_date       AS peEnd,
+        u_ucsd_pe_waiver.reason         AS reason,
+        u_ucsd_pe_waiver.comments       AS comments,
+        u_ucsd_pe_waiver.author         AS author
+    FROM
+        u_ucsd_pe_waiver
+    WHERE
+        u_ucsd_pe_waiver.studentsdcid = ~(gpv.studentdcid);
+]{
+   "waiverid": "~(waiverid)",
+   "peStart": "~(peStart)",
+   "peEnd": "~(peEnd)",
+   "reason": "~(reason)",
+   "comments": "~(comments)",
+   "author": "~(author)"
+},[/tlist_sql]{}]

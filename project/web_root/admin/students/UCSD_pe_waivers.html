@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UCSD - PE Waivers</title>
+<!-- required scripts -->
+    ~[wc:commonscripts]
+<!-- Required style sheets: screen.css, and print.css -->
+    <link href="/images/css/pe_waiver_style/pe_waiver.css" rel="stylesheet" media="screen">
+    <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+    <link href="/images/css/print.css" rel="stylesheet" media="print">
+</head>
+<body>
+    ~[wc:admin_header_frame_css]
+    <!-- breadcrumb start -->
+        <a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="/admin/students/home.html?selectstudent=nosearch" target="_top">Student Selection</a> &gt; UCSD - PE Waivers
+    <!-- breadcrumb end -->
+    ~[wc:admin_navigation_frame_css]
+    <!-- start of main menu and content -->
+    ~[wc:title_student_begin_css]UCSD - PE Waivers~[wc:title_student_end_css]
+    
+    <!-- start of content area -->
+    ~[if.~(gpv.changesSaved)=true]<div class="feedback-confirm">~[text:psx.common.changes_recorded]</div>[/if]
+        <div    data-require-path="/scripts/components/UCSD_PE_Waivers/index.js"
+                data-module-name="peWaiversModule"
+                data-ng-controller="PhysEdMainController"
+                data-ng-init="studentdcid='~(studentrn)';
+                        author='~[x:username]'"
+                class="box-round"
+                data-ng-cloak>
+            <div    pe-waiver-drawer
+                    data-record="currentRecord"
+                    data-main-list="waiverList"
+                    data-studentdcid="studentdcid">
+            </div>
+            <table class="grid">
+                <thead>
+                    <tr>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Reason</th>
+                        <th>Comments</th>
+                        <th>Author</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="waiver in waiverList">
+                        <td data-ng-bind="waiver.peStart"></td>
+                        <td data-ng-bind="waiver.peEnd"></td>
+                        <td data-ng-bind="waiver.reason"></td>
+                        <td data-ng-bind="waiver.comments"></td>
+                        <td data-ng-bind="waiver.author"></td>
+                        <td>
+                            <button type="button"
+                                    data-ng-click="openPEDrawer(waiver)">
+                                Edit
+                            </button>
+                            <button type="button"
+                                    data-ng-click="deleteWaiver(waiver)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <button type="button"
+                                    data-ng-click="openPEDrawer()">
+                                New
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <!-- end of content area -->
+    ~[wc:admin_footer_frame_css]
+</body>
+</html>

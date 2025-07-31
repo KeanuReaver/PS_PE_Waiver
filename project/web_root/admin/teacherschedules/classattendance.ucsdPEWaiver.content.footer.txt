@@ -1,0 +1,21 @@
+~[ATT_RecordMeetingTeacherStudentList]
+~[tlist_sql;
+    SELECT
+        cc.id AS ccident,
+        students.dcid AS stuDCID
+    FROM
+        cc cc
+        INNER JOIN students ON students.id = cc.studentid
+        INNER JOIN u_ucsd_pe_waiver u_ucsd_pe_waiver ON u_ucsd_pe_waiver.studentsdcid = students.dcid
+            AND TO_DATE('~[date]', 'MM/DD/YYYY') BETWEEN u_ucsd_pe_waiver.start_date AND u_ucsd_pe_waiver.end_date
+    WHERE
+        cc.id = '[ccid]';
+]
+    <div    style="display:none;"
+            ccident="ccid_~(ccident)"
+            class="pe-waiver-info">
+        <a href="/admin/ucsdAlerts/ucsdPhyEdAlert.html?frn=001~(stuDCID)" class="dialogR" title="PE Waiver Alert">
+            <img class="accommodationsAlert" src="/images/css/pe_waiver_style/Running.svg" alt="PE">
+        </a>    
+    </div>
+[/tlist_sql]

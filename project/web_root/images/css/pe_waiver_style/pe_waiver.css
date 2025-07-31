@@ -1,0 +1,60 @@
+/* Drawer CSS */
+#pe-drawer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    border-left: 1px solid black;
+    background-color: #FFF;
+}
+
+#pe-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+}
+
+#pe-drawer-header {
+    position: sticky;
+    top: 0;
+    padding:0 0 16px 0;
+    border-bottom: 1px solid black;
+    background-color: #e2e2e2;
+    z-index: 1001;
+}
+
+#pe-drawer-content {
+    overflow-y: auto;
+    flex: 1;
+    padding: 16px
+}
+
+@media (prefers-color-scheme: dark) {
+    #pe-drawer {
+        background: #1f2933;
+        border-left: 1px solid darkgrey;
+    }
+
+    #pe-overlay {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    #pe-drawer-header {
+        border-bottom: 1px solid #898c8f;
+        background-color: #3E4C59;
+    }
+
+    
+}

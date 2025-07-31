@@ -1,0 +1,50 @@
+<div class="studentAlert" id="alert-accomodations~(studentfrn)" style="height:auto;width:auto">
+    <img class="alertImage" src="/images/css/pe_waiver_style/Running.svg" alt="PE">
+    <div class="alertContent">
+        ~[tlist_sql;
+            SELECT
+                to_char(u_ucsd_pe_waiver.start_date, 'DD-MON-YYYY') AS peStart,
+                to_char(u_ucsd_pe_waiver.end_date, 'DD-MON-YYYY')   AS peEnd,
+                u_ucsd_pe_waiver.author                             AS author,
+                u_ucsd_pe_waiver.reason                             AS reason,
+                u_ucsd_pe_waiver.comments                           AS comments
+            FROM
+                u_ucsd_pe_waiver
+            WHERE
+                u_ucsd_pe_waiver.studentsdcid = ~(studentrn)
+                AND TO_DATE('~[date]', 'MM/DD/YYYY') BETWEEN u_ucsd_pe_waiver.start_date AND u_ucsd_pe_waiver.end_date;
+        ]
+            <div class="fluid-form">
+                <div>
+                    <div>
+                        <label>Start Date:</label>
+                        <p><em>~(peStart)</em></p>
+                    </div>
+                    <div>
+                        <label>End Date:</label>
+                        <p><em>~(peEnd)</em></p>   
+                        
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Author:</label>
+                        <p><em>~(author)</em></p>    
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Reason:</label>
+                        <p><em>~(reason)</em></p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Comments:</label>
+                        <p>~(comments)</p>
+                    </div>
+                </div>
+            </div>
+        [/tlist_sql]
+    </div>
+</div>

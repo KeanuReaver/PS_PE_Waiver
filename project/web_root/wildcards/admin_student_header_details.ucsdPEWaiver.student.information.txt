@@ -1,0 +1,41 @@
+<!-- PE Waiver Script -->
+<script>
+    $j(() => {
+        function checkForPEWaivers() {
+            const alertTemplatePE = `<a title="PE Waiver Alert" id="pe-waiver-alert" href="/admin/ucsdAlerts/ucsdPhyEdAlert.html" class="dialogR">
+                    <img src="/images/css/pe_waiver_style/Running.svg" alt="PE">
+                </a>`;
+
+            const peWaiverStatus = [
+                ~[tlist_sql;
+                    SELECT
+                        u_ucsd_pe_waiver.start_date     AS peStart,
+                        u_ucsd_pe_waiver.end_date       AS peEnd,
+                        u_ucsd_pe_waiver.reason         AS reason,
+                        u_ucsd_pe_waiver.comments       AS comments,
+                        u_ucsd_pe_waiver.author         AS author
+                    FROM
+                        u_ucsd_pe_waiver
+                    WHERE
+                        u_ucsd_pe_waiver.studentsdcid = ~(studentrn)
+                        AND TO_DATE('~[date]', 'MM/DD/YYYY') BETWEEN u_ucsd_pe_waiver.start_date AND u_ucsd_pe_waiver.end_date;        
+                ]{
+                    "peStart": "~(peStart)",
+                    "peEnd": "~(peEnd)",
+                    "reason": "~(reason)",
+                    "comments": "~(comments)",
+                    "author": "~(author)"
+                },[/tlist_sql]{}
+            ];
+
+            const filterWaiverCheckPE = peWaiverStatus.filter(obj => Object.keys(obj).length !== 0);
+            
+            if (filterWaiverCheckPE.length > 0) {
+                console.log('this ran');
+                $j('div#student_alerts').prepend(alertTemplatePE);
+            }
+        }
+        
+        checkForPEWaivers();
+    });
+</script>
