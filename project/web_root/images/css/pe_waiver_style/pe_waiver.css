@@ -40,21 +40,18 @@
     flex: 1;
     padding: 16px
 }
+/* Dark Mode */
 
-@media (prefers-color-scheme: dark) {
-    #pe-drawer {
-        background: #1f2933;
-        border-left: 1px solid darkgrey;
-    }
+body.set-to-dark:not(.disable-dark-mode) #pe-drawer {
+    background: #1f2933;
+    border-left: 1px solid darkgrey;
+}
 
-    #pe-overlay {
-        background: rgba(255, 255, 255, 0.5);
-    }
+body.set-to-dark:not(.disable-dark-mode) #pe-overlay {
+    background: rgba(255, 255, 255, 0.5);
+}
 
-    #pe-drawer-header {
-        border-bottom: 1px solid #898c8f;
-        background-color: #3E4C59;
-    }
-
-    
+body.set-to-dark:not(.disable-dark-mode) #pe-drawer-header {
+    border-bottom: 1px solid #898c8f;
+    background-color: #3E4C59;
 }

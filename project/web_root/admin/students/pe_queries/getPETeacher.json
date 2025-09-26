@@ -1,0 +1,31 @@
+[
+    ~[tlist_sql;
+        SELECT
+            users.lastfirst AS lastfirst,
+            users.email_addr AS email_addr
+        FROM
+            students
+            INNER JOIN cc ON cc.studentid = students.id
+                AND sysdate BETWEEN cc.dateenrolled AND cc.dateleft
+            INNER JOIN sections ON cc.sectionid = sections.id
+                AND sections.course_number IN ('60110A', '60110B', '60115A', '60115B')
+            INNER JOIN schoolstaff ON schoolstaff.dcid = sections.teacher
+            INNER JOIN users ON schoolstaff.users_dcid = users.dcid
+        WHERE
+            students.dcid = ~(studentrn)
+        UNION ALL
+        SELECT
+            users.lastfirst AS lastfirst,
+            users.email_addr AS email_addr
+        FROM
+            studentcounselor
+            INNER JOIN users ON studentcounselor.userdcid = users.dcid
+        WHERE
+            studentcounselor.studentdcid = ~(studentrn)
+    ;]
+        {
+            "lastfirst": "~(lastfirst)",
+            "email_addr": "~(email_addr)"
+        },
+    [/tlist_sql]{}
+]

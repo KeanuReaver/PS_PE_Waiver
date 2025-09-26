@@ -1,4 +1,12 @@
 'use strict';
-define(['angular', 'components/shared/index'], function(angular) {
-    return angular.module('peWaiversModule', ['powerSchoolModule', 'ngSanitize']);
+define([
+    'angular',
+    'components/shared/index',
+    'components/angular_libraries/notification_service'
+], function(angular) {
+    return angular.module('peWaiversModule', [
+        'powerSchoolModule',
+        'ngSanitize',
+        'notificationServiceModule'
+    ]);
 });

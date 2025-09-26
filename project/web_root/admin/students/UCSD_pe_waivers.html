@@ -24,13 +24,18 @@
                 data-module-name="peWaiversModule"
                 data-ng-controller="PhysEdMainController"
                 data-ng-init="studentdcid='~(studentrn)';
-                        author='~[x:username]'"
+                        author='~[x:username]';
+                        studentNumber='~(studentnumber)';
+                        studentName='~(studentname)'"
                 class="box-round"
                 data-ng-cloak>
             <div    pe-waiver-drawer
                     data-record="currentRecord"
                     data-main-list="waiverList"
-                    data-studentdcid="studentdcid">
+                    data-studentdcid="studentdcid"
+                    data-pe-teachers="peteachers"
+                    data-student-number="studentNumber"
+                    data-student-name="studentName">
             </div>
             <table class="grid">
                 <thead>

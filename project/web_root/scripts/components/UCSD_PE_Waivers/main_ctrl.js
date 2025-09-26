@@ -4,23 +4,27 @@ define(function(require) {
     const $j = require('jquery');
 
     module.controller('PhysEdMainController', ['$scope', '$window', 'getData', 'drawerFunctions', 'deleteWaiver', function($scope, $window, getData, drawerFunctions, deleteWaiver) {
-        $scope.studentdcid;   // init value
-        $scope.author;      // init value
+        $scope.studentdcid;     // init value
+        $scope.author;          // init value
+        $scope.studentNumber;   // init value
+        $scope.studentName;     // init value
 
         const waiverPath = '/admin/students/pe_queries/peWaiver.json';
+        const peTeacherPath = '/admin/students/pe_queries/getPETeacher.json';
 
         $scope.waiverList = [];
         $scope.currentRecord = {};
+        $scope.peteachers = [];
 
         function getWaivers() {
             initBehaviors();
             
             const formatDate = (date) => {
-                console.log(date);
+                // console.log(date);
                 const jsDate = date 
                     ? new Date(date) 
                     : null;
-                console.log(jsDate);    
+                // console.log(jsDate);    
                 if (!!jsDate) {
                     const year = jsDate.getFullYear();
                     const month = (jsDate.getMonth() + 1).toString().padStart(2, '0');
@@ -43,11 +47,24 @@ define(function(require) {
                             comments: record.comments,
                             author: record.author
                         }
-                    });
+                    }).sort((a, b) => new Date(b.peStart) - new Date(a.peStart));
+                    // console.log($scope.waiverList);
                     $scope.$apply();
                 })
                 .catch(error => {
                     console.error('Failed to get waiverList:', error);
+                });
+        }
+
+        function getPETeachers() {
+            getData.getTList(peTeacherPath)
+                .then(response => {
+                    const data = response.filter(obj => Object.keys(obj).length !== 0);
+                    $scope.peteachers = data.map(rec => rec.email_addr);
+                    // console.log($scope.peteachers);
+                })
+                .catch(error => {
+                    console.error('Failed to get PE teachers:', error);
                 });
         }
         
@@ -58,7 +75,7 @@ define(function(require) {
                     $scope.waiverList.splice(index, 1);
                 }
             } else if (!!record.waiverid) {
-                console.log('this ran')
+                // console.log('this ran')
                 deleteWaiver.deleteWaiver('/ws/schema/table/u_ucsd_pe_waiver/', record.waiverid)
                     .then(response => {
                         console.log(response);
@@ -74,7 +91,7 @@ define(function(require) {
 
         $j(() => {
             getWaivers();
-        
+            getPETeachers();
         });
 
         $scope.closePEDrawer = function() {
