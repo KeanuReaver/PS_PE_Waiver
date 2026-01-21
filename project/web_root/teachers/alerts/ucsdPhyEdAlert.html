@@ -7,7 +7,25 @@
                 to_char(u_ucsd_pe_waiver.end_date, 'DD-MON-YYYY')   AS peEnd,
                 u_ucsd_pe_waiver.author                             AS author,
                 u_ucsd_pe_waiver.reason                             AS reason,
-                u_ucsd_pe_waiver.comments                           AS comments
+                REPLACE(                                      
+                    REPLACE(                                 
+                        REPLACE(                              
+                            REPLACE(                          
+                                REPLACE(                      
+                                    REPLACE(                  
+                                        NVL(u_ucsd_pe_waiver.comments, ''),
+                                        CHR(92), CHR(92) || CHR(92)
+                                    ),
+                                    CHR(13) || CHR(10), CHR(92) || 'n'
+                                ),
+                                CHR(13), CHR(92) || 'n'
+                            ),
+                            CHR(10), CHR(92) || 'n'
+                        ),
+                        CHR(9), CHR(92) || 't'
+                    ),
+                    CHR(34), CHR(92) || CHR(34)
+                )                               AS comments
             FROM
                 u_ucsd_pe_waiver
             WHERE

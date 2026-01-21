@@ -32,7 +32,7 @@ define(function(require) {
                     
                     return `${month}/${day}/${year}`;
                 } 
-                return date;    
+                return date;
             }
             
             getData.getTList(`${waiverPath}?studentdcid=${$scope.studentdcid}`)

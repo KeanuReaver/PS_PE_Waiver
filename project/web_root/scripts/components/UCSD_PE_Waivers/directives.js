@@ -90,7 +90,7 @@ define(function(require) {
                     return notificationService.send({
                             title:  'Student PE Waiver Notification',
                             stunum: String($scope.studentNumber),
-                            stuname:String($scope.studentName),
+                            stuname: 'Student',
                             change: change_note,
                             recip_e: teachers
                         })
